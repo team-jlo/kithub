@@ -16,32 +16,31 @@ class App extends React.Component {
     this.state = { 
       productTypes: [
         { name: "-- Select A Product --"},
-        { name: "Blush", value: 'blush', categories: [] },
-        { name: "Bronzer", value: 'bronzer', categories: [] },
-        { name: 'Eyebrow', value: 'eyebrow', categories: [] },
-        { name: 'Eyeliner', value: 'eyeliner', categories: ['Liquid', 'Pencil', 'Gel', 'Cream'] },
-        { name: 'Eyeshadow', value: 'eyeshadow', categories: ['Palette', 'Pencil'] },
-        { name: 'Foundation', value: 'foundation', categories: ['Liquid', 'Contour', 'Bb cc', 'Concealer', 'Cream', 'Mineral', 'Powder', 'Highlighter'] },
-        { name: 'Lip Liner', value: 'lip_liner', categories: [] },
-        { name: 'Lipstick', value: 'lipstick', categories: ['Lipstick', 'Lip Gloss', 'Liquid', 'Lip Stain'] },
-        { name: 'Mascara', value: 'mascara', categories: [] },
-        { name: 'Nail Polish', value: 'nail_polish', categories: [] }
+        { name: "Blush", value: 'blush', categories: ['All'] },
+        { name: "Bronzer", value: 'bronzer', categories: ['All'] },
+        { name: 'Eyebrow', value: 'eyebrow', categories: ['All'] },
+        { name: 'Eyeliner', value: 'eyeliner', categories: ['All','Liquid', 'Pencil', 'Gel', 'Cream'] },
+        { name: 'Eyeshadow', value: 'eyeshadow', categories: ['All','Palette', 'Pencil'] },
+        { name: 'Foundation', value: 'foundation', categories: ['All','Liquid', 'Contour', 'Bb cc', 'Concealer', 'Cream', 'Mineral', 'Powder', 'Highlighter'] },
+        { name: 'Lip Liner', value: 'lip_liner', categories: ['All'] },
+        { name: 'Lipstick', value: 'lipstick', categories: ['All','Lipstick', 'Lip Gloss', 'Liquid', 'Lip Stain'] },
+        { name: 'Mascara', value: 'mascara', categories: ['All'] },
+        { name: 'Nail Polish', value: 'nail_polish', categories: ['All'] }
       ],
       productTypeSelected: false,
       selectedProductType: '',
       selectedProductCategories: [],
       searchQuery: '',
-      queryResults: [],
+			queryResults: [],
+			productsToDisplay: [],
+			categoryToDisplay: '',
 
   }
-
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.setCategory = this.setCategory.bind(this);
   }
 
-	componentDidMount(){
-  }
-  
   handleChange(e) {    
     this.setState({ 
       [e.target.name]: e.target.value,
@@ -51,11 +50,6 @@ class App extends React.Component {
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    
-  }
-  
   getResultsByProductType() {
     axios({
       url: `https://makeup-api.herokuapp.com/api/v1/products.json`,
@@ -65,30 +59,51 @@ class App extends React.Component {
         product_type: `${this.state.selectedProductType}`
       }
     }).then(res => {
-      console.log(res.data);
       this.setState({
         queryResults: res.data,
       }, () => {
         this.getCategory()
       })
-      
     });
-  }
+	}
+	setCategory(e){
+		this.setState({
+			[e.target.name]: e.target.value,
+				categoryToDisplay: e.target.value
+		})
 
-  getCategory() {
+	}
+
+	getCategory() {
+		this.getProducts();
     let products = this.state.productTypes;
-    console.log(products);
+		console.log(products);
 
     for(let i = 0; i < products.length; i++){
-      console.log(products[i].name);
+
         if (products[i].value === this.state.selectedProductType){
           this.setState({ 
             selectedProductCategories: products[i].categories
-          }, () => {console.log(this.state.selectedProductCategories)})
+          });
         }
     }
+	}
 
-  }
+	getProducts(){
+		let queryResults = Array.from(this.state.queryResults);
+		let currentCategory = [];
+
+		// product.categories.length > 1 && 
+		// if product.category = this.state.categoryToDisplay, currentCateory.push(product)
+	}
+
+
+	displayProducts(){
+		console.log('display products');
+	}
+	handleSubmit(e) {
+		e.preventDefault();
+	}
 
   render() {
     return <div>
@@ -101,7 +116,7 @@ class App extends React.Component {
             })}
           </select>
         {this.state.productTypeSelected === true ? 
-          <select name="selectedCategory" value={this.state.selectedProductType.categories}>
+          <select onChange={this.setCategory} name="selectedCategory" value={this.state.selectedProductType.categories}>
             {this.state.selectedProductCategories.map((category, i) => {
               return (
                 <option value={category} key={i}> 

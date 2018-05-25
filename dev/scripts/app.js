@@ -16,16 +16,16 @@ class App extends React.Component {
     this.state = { 
       productTypes: [
         { name: "-- Select A Product --"},
-        { name: "Blush", value: 'blush' },
-        { name: "Bronzer", value: 'bronzer' },
-        { name: 'Eyebrow', value: 'eyebrow' },
+        { name: "Blush", value: 'blush', categories: [] },
+        { name: "Bronzer", value: 'bronzer', categories: [] },
+        { name: 'Eyebrow', value: 'eyebrow', categories: [] },
         { name: 'Eyeliner', value: 'eyeliner', categories: ['Liquid', 'Pencil', 'Gel', 'Cream'] },
         { name: 'Eyeshadow', value: 'eyeshadow', categories: ['Palette', 'Pencil'] },
         { name: 'Foundation', value: 'foundation', categories: ['Liquid', 'Contour', 'Bb cc', 'Concealer', 'Cream', 'Mineral', 'Powder', 'Highlighter'] },
-        { name: 'Lip Liner', value: 'lip_liner' },
+        { name: 'Lip Liner', value: 'lip_liner', categories: [] },
         { name: 'Lipstick', value: 'lipstick', categories: ['Lipstick', 'Lip Gloss', 'Liquid', 'Lip Stain'] },
-        { name: 'Mascara', value: 'mascara' },
-        { name: 'Nail Polish', value: 'nail_polish'}
+        { name: 'Mascara', value: 'mascara', categories: [] },
+        { name: 'Nail Polish', value: 'nail_polish', categories: [] }
       ],
       productTypeSelected: false,
       selectedProductType: '',

@@ -70,32 +70,50 @@ class App extends React.Component {
 		this.setState({
 			[e.target.name]: e.target.value,
 				categoryToDisplay: e.target.value
-		})
+		}, () => {
+			this.getProducts();
+		}  )
+		
 
 	}
 
 	getCategory() {
-		this.getProducts();
-    let products = this.state.productTypes;
+		let products = this.state.productTypes;
 		console.log(products);
-
+		
     for(let i = 0; i < products.length; i++){
-
-        if (products[i].value === this.state.selectedProductType){
-          this.setState({ 
-            selectedProductCategories: products[i].categories
-          });
-        }
+			
+			if (products[i].value === this.state.selectedProductType){
+				this.setState({ 
+					selectedProductCategories: products[i].categories
+				}); 
+			}
     }
+
 	}
 
-	getProducts(){
-		let queryResults = Array.from(this.state.queryResults);
-		let currentCategory = [];
+getProducts(){
+		const queryResults = Array.from(this.state.queryResults);
+		let productsWithCurrentCategory = [];
+		console.log('calling get products');
 
-		// product.categories.length > 1 && 
-		// if product.category = this.state.categoryToDisplay, currentCateory.push(product)
-	}
+		for (let i = 0; i < queryResults.length; i++){	
+			console.log(queryResults[i]);
+			if (queryResults[i].category === this.state.categoryToDisplay.toLowerCase() ){
+				productsWithCurrentCategory.push(queryResults[i]);
+				} else {
+					productsWithCurrentCategory = queryResults;
+				}
+			}
+
+		console.log(productsWithCurrentCategory);
+
+		this.setState(
+			{ productsToDisplay : productsWithCurrentCategory }
+		)
+	
+
+		}
 
 
 	displayProducts(){
@@ -106,7 +124,8 @@ class App extends React.Component {
 	}
 
   render() {
-    return <div>
+    return (
+		<div>
         <form action="" onSubmit={this.handleSubmit}>
           <select name="selectedProductType" value={this.state.selectedProductType} onChange={this.handleChange}>
             {this.state.productTypes.map((productType, i) => {
@@ -129,7 +148,8 @@ class App extends React.Component {
           
           <input type="submit" value="Submit" />
         </form>
-      </div>;
+      </div>
+		)
   }
 }
 

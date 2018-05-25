@@ -95,25 +95,29 @@ class App extends React.Component {
 getProducts(){
 		const queryResults = Array.from(this.state.queryResults);
 		let productsWithCurrentCategory = [];
-		console.log('calling get products');
+		console.log('calling get products', queryResults.length);
 
-		for (let i = 0; i < queryResults.length; i++){	
-			console.log(queryResults[i]);
-			if (queryResults[i].category === this.state.categoryToDisplay.toLowerCase() ){
-				productsWithCurrentCategory.push(queryResults[i]);
-				} else {
-					productsWithCurrentCategory = queryResults;
+		if(this.state.categoryToDisplay === 'All'){
+			
+			productsWithCurrentCategory.push(...queryResults);
+		} else{
+
+			for (let i = 0; i < queryResults.length; i++){	
+				if(queryResults[i].category === this.state.categoryToDisplay.replace(/\s/g, '_').toLowerCase() ){
+						console.log(queryResults[i]);
+							productsWithCurrentCategory.push(queryResults[i]);
+				
+					}
 				}
-			}
+		}
 
-		console.log(productsWithCurrentCategory);
+		console.log(productsWithCurrentCategory.length);
 
 		this.setState(
 			{ productsToDisplay : productsWithCurrentCategory }
 		)
 	
-
-		}
+	}
 
 
 	displayProducts(){

@@ -113,11 +113,11 @@ getProducts(){
 
 		console.log(productsWithCurrentCategory.length);
 
-		// this.setState(
-		// 	{ productsToDisplay : productsWithCurrentCategory }
-		// )
+		this.setState(
+			{ productsToDisplay : productsWithCurrentCategory }
+		)
 	
-		}
+	}
 
 
 	displayProducts(){

@@ -44,7 +44,6 @@ class App extends React.Component {
 			productsToDisplay: [],
       categoryToDisplay: '',
       currentUserId: '',
-      currentUserFirebaseId: '',
       currentUserName: '',
       loggedIn: false
 
@@ -60,10 +59,9 @@ class App extends React.Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
-        // let currentUser = firebase.auth().currentUser;
         let dbRefUser = firebase.database().ref('users/' + user.uid);
         
-        this.dbRef.on('value', (snapshot) => {
+        dbRefUser.on('value', (snapshot) => {
           if (snapshot.exists()) {
             let loggedInUser = snapshot.val();
             this.setState({

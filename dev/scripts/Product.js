@@ -17,7 +17,7 @@ const Product = (props) => {
                 {props.description}
             </p>
             <button className="button button__wishlist button__toggle">Add to wishlist</button>
-            <button className="button button__kit button__toggle"></button>
+            <button className="button button__kit button__toggle">Add to kit</button>
         </div>
     );
 }

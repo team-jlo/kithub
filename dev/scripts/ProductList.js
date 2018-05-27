@@ -1,4 +1,5 @@
 import React from 'react';
+import Product from './Product';
 
 const ProductList = (props) => {
     return (
@@ -7,11 +8,12 @@ const ProductList = (props) => {
                 return (
                 <li>
                     <Product 
-                        brand={props.brand}
-                        description={props.description}
-                        id={props.id}
-                        image_link={props.image_link}
-                        price={props.price}
+                        brand={product.brand}
+                            description={product.description}
+                            id={product.id}
+                            image_link={product.image_link}
+                            name={product.name}
+                            price={product.price}
                     />
                 </li>
                 )

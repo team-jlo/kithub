@@ -6,14 +6,16 @@ const ProductList = (props) => {
         <ul className="product-list">
             {props.products.map((product, i) => {
                 return (
-                <li>
-                    <Product 
-                        brand={product.brand}
+                <li key={product.id}>
+										<Product 
+                        		brand={product.brand}
                             description={product.description}
                             id={product.id}
                             image_link={product.image_link}
                             name={product.name}
-                            price={product.price}
+														price={product.price}
+														currentUserId={props.currentUserId}
+														addToWishlist={props.addToWishlist}
                     />
                 </li>
                 )

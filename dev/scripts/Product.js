@@ -1,4 +1,12 @@
 import React from 'react';
+import firebase from 'firebase';
+
+
+
+	// on click, this will copy all of the information from a product and push it into the user's Firebase bin, and add a "inWishlist"
+	// key as well, with a value of "true";
+	// this will be passed down a prop to productList and then to Product.
+
 
 const Product = (props) => {
     return (
@@ -16,10 +24,10 @@ const Product = (props) => {
             <p className="product__description">
                 {props.description}
             </p>
-            <button className="button button__wishlist button__toggle">Add to wishlist</button>
+            <button onClick={() =>{props.addToWishlist(props.id)}} className="button button__wishlist button__toggle">Add to wishlist</button>
             <button className="button button__kit button__toggle">Add to kit</button>
         </div>
-    );
+		);
 }
 
 export default Product;

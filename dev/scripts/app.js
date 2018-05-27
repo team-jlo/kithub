@@ -7,6 +7,8 @@ import {
 	Route, Link, NavLink
 } from 'react-router-dom';
 import ProductList from './ProductList';
+import Header from './Header';
+import Footer from './Footer';
 
 const config = {
   apiKey: "AIzaSyCqf-B49wkmM2dxSkJoOR1uwF0lfypU-vw",
@@ -16,6 +18,7 @@ const config = {
   storageBucket: "",
   messagingSenderId: "321165294365"
 };
+
 firebase.initializeApp(config);
 
 class App extends React.Component {
@@ -51,7 +54,8 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
     this.setCategory = this.setCategory.bind(this);
-    this.loginWithGoogle = this.loginWithGoogle.bind(this);
+		this.loginWithGoogle = this.loginWithGoogle.bind(this);
+		this.addToWishlist = this.addToWishlist.bind(this);	
   }
 
   componentDidMount() {
@@ -60,7 +64,8 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
         let dbRefUser = firebase.database().ref('users/' + user.uid);
-        
+				
+				// checks to see if current user exists; if not, creates user
         dbRefUser.on('value', (snapshot) => {
           if (snapshot.exists()) {
             let loggedInUser = snapshot.val();
@@ -74,7 +79,8 @@ class App extends React.Component {
             console.log('new user created');
             const loggedInUser = {
               userId: user.uid,
-              userName: user.displayName
+							userName: user.displayName,
+							wishKit: ['item1', 'item2']
             }
           this.setState({
             loggedIn: true,
@@ -92,31 +98,20 @@ class App extends React.Component {
       } 
     })
   }
-
-
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
       .then((user) => {
-        // this.dbRef.push({ userId: this.state.currentUserId, userName: this.state.currentUserName });
         console.log(user);
       })
       .catch((err) => {
         console.log(err);
       })
   }
-
   logout() {
     firebase.auth().signOut();
     this.dbRef.off('value');
   }
-
-  checkIfCurrentUserExists(snapshot) {
-    let currentUser = this.state.currentUserId;
-
-    const data = snapshot.val();
-  }
-
   handleChange(e) {    
     this.setState({ 
       [e.target.name]: e.target.value,
@@ -149,25 +144,17 @@ class App extends React.Component {
 		}, () => {
 			this.getProducts();
 		}  )
-		
-
 	}
-
 	getCategory() {
-		let products = this.state.productTypes;
-		console.log(products);
-		
+		let products = this.state.productTypes;	
     for(let i = 0; i < products.length; i++){
-			
 			if (products[i].value === this.state.selectedProductType){
 				this.setState({ 
 					selectedProductCategories: products[i].categories
 				}); 
 			}
     }
-
 	}
-
 getProducts(){
 		const queryResults = Array.from(this.state.queryResults);
 		let productsWithCurrentCategory = [];
@@ -182,29 +169,50 @@ getProducts(){
 				if(queryResults[i].category === this.state.categoryToDisplay.replace(/\s/g, '_').toLowerCase() ){
 						console.log(queryResults[i]);
 							productsWithCurrentCategory.push(queryResults[i]);
-				
 					}
 				}
 		}
-
-		console.log(productsWithCurrentCategory.length);
-
 		this.setState(
 			{ productsToDisplay : productsWithCurrentCategory }
 		)
-	
-	}
-
-
-	displayProducts(){
-		console.log('display products');
 	}
 	handleSubmit(e) {
 		e.preventDefault();
 	}
 
+	addToWishlist(productId) {
+		// console.log(productId)
+		let dbRefUser = firebase.database().ref('users/' + this.state.currentUserId);
+		
+		dbRefUser.once('value').then((snapshot) => {
+			console.log(snapshot);
+			let inWishKit = snapshot.child("wishKit").exists();
+			if (inWishKit === false) {
+				dbRefUser.child('wishKit').push(productId)
+				console.log('added to wishkit')
+			}
+			else {
+				console.log('not added to wishkit')
+			}
+		});
+
+	}
+	// will check to see if this item is 1) in user's wishKit 2) if it is, then does if have a wishList property of true.
+	// if in wishKit, change property.. if not, push to array. 
+
+	// if(item with this product id is NOT in wishkit ){
+	// dbRefUser.wishKit.push( whole object plus inwishList property : true)
+	// } else if { it's IN wishKit already, change inWishlist property from false to true
+
+//	} else if {
+	// return true
+// }
+
+
   render() {
     return (
+			<div>
+			<Header />
 		<div>
         <div className="login">
           {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
@@ -232,8 +240,12 @@ getProducts(){
           
           <input type="submit" value="Submit" />
         </form>
-        <ProductList products={this.state.productsToDisplay} />
+				<ProductList products={this.state.productsToDisplay}
+										currentUserId={this.state.currentUserId}
+										addToWishlist={this.addToWishlist}/>
       </div>
+			<Footer/>
+			</div>
 		)
   }
 }

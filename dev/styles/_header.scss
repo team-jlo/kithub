@@ -1,3 +1,11 @@
 header {
-    
+    h1 {
+        font-size: 3em;
+        font-weight: 400;
+        text-transform: uppercase;
+
+        span {
+            font-weight: 700;
+        }
+    }
 }

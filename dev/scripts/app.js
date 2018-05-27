@@ -6,8 +6,17 @@ import {
 	BrowserRouter as Router,
 	Route, Link, NavLink
 } from 'react-router-dom';
+import ProductList from './ProductList';
 
-
+const config = {
+  apiKey: "AIzaSyCqf-B49wkmM2dxSkJoOR1uwF0lfypU-vw",
+  authDomain: "kithub-aa9f5.firebaseapp.com",
+  databaseURL: "https://kithub-aa9f5.firebaseio.com",
+  projectId: "kithub-aa9f5",
+  storageBucket: "",
+  messagingSenderId: "321165294365"
+};
+firebase.initializeApp(config);
 
 class App extends React.Component {
   constructor() {
@@ -33,12 +42,81 @@ class App extends React.Component {
       searchQuery: '',
 			queryResults: [],
 			productsToDisplay: [],
-			categoryToDisplay: '',
+      categoryToDisplay: '',
+      currentUserId: '',
+      currentUserFirebaseId: '',
+      currentUserName: '',
+      loggedIn: false
 
   }
     this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.setCategory = this.setCategory.bind(this);
+    this.setCategory = this.setCategory.bind(this);
+    this.loginWithGoogle = this.loginWithGoogle.bind(this);
+  }
+
+  componentDidMount() {
+    this.dbRef = firebase.database().ref('users');
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user !== null) {
+        // let currentUser = firebase.auth().currentUser;
+        let dbRefUser = firebase.database().ref('users/' + user.uid);
+        
+        this.dbRef.on('value', (snapshot) => {
+          if (snapshot.exists()) {
+            let loggedInUser = snapshot.val();
+            this.setState({
+              loggedIn: true,
+              currentUser: loggedInUser
+            });
+            this.dbRefUser = dbRefUser;
+          }
+          else {
+            console.log('new user created');
+            const loggedInUser = {
+              userId: user.uid,
+              userName: user.displayName
+            }
+          this.setState({
+            loggedIn: true,
+            currentUser: loggedInUser
+          })
+          dbRefUser.set(loggedInUser);
+          }
+        })
+      }
+      else {
+        this.setState({
+          loggedIn: false,
+          currentUser: null
+        })
+      } 
+    })
+  }
+
+
+  loginWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .then((user) => {
+        // this.dbRef.push({ userId: this.state.currentUserId, userName: this.state.currentUserName });
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  logout() {
+    firebase.auth().signOut();
+    this.dbRef.off('value');
+  }
+
+  checkIfCurrentUserExists(snapshot) {
+    let currentUser = this.state.currentUserId;
+
+    const data = snapshot.val();
   }
 
   handleChange(e) {    
@@ -130,6 +208,10 @@ getProducts(){
   render() {
     return (
 		<div>
+        <div className="login">
+          {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
+          {this.state.loggedIn === true ? <button onClick={this.logout}>Logout</button> : null}
+        </div>
         <form action="" onSubmit={this.handleSubmit}>
           <select name="selectedProductType" value={this.state.selectedProductType} onChange={this.handleChange}>
             {this.state.productTypes.map((productType, i) => {
@@ -152,6 +234,7 @@ getProducts(){
           
           <input type="submit" value="Submit" />
         </form>
+        <ProductList products={this.state.productsToDisplay} />
       </div>
 		)
   }

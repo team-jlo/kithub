@@ -217,7 +217,7 @@ getProducts(){
   }
   
   addToKit() {
-    
+
   }
 	// will check to see if this item is 1) in user's wishKit 2) if it is, then does if have a wishList property of true.
 	// if in wishKit, change property.. if not, push to array. 
@@ -233,7 +233,6 @@ getProducts(){
 
   render() {
     return (
-
 			<div className="wrapper">
 					<Header />
 				<div>

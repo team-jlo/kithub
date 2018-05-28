@@ -233,40 +233,41 @@ getProducts(){
 
   render() {
     return (
-			<div>
-			<Header />
-		<div>
-        <div className="login">
-          {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
-          {this.state.loggedIn === true ? <button onClick={this.logout}>Logout</button> : null}
-        </div>
-        <form action="" onSubmit={this.handleSubmit}>
-          <select name="selectedProductType" value={this.state.selectedProductType} onChange={this.handleChange}>
-            {this.state.productTypes.map((productType, i) => {
-              return <option value={productType.value} key={i}>
-                  {productType.name}
-                </option>;
-            })}
-          </select>
-        {this.state.productTypeSelected === true ? 
-          <select onChange={this.setCategory} name="selectedCategory" value={this.state.selectedProductType.categories}>
-            {this.state.selectedProductCategories.map((category, i) => {
-              return (
-                <option value={category} key={i}> 
-                  {category}
-                </option>
-              )
-            })}
-          </select> 
-        : null  }
-          
-          <input type="submit" value="Submit" />
-        </form>
-				<ProductList products={this.state.productsToDisplay}
-										currentUserId={this.state.currentUserId}
-										addToWishlist={this.addToWishlist}/>
-      </div>
-			{/* <Footer/> */}
+
+			<div className="wrapper">
+					<Header />
+				<div>
+						<div className="login">
+							{this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
+							{this.state.loggedIn === true ? <button onClick={this.logout}>Logout</button> : null}
+						</div>
+						<form action="" onSubmit={this.handleSubmit}>
+							<select name="selectedProductType" value={this.state.selectedProductType} onChange={this.handleChange}>
+								{this.state.productTypes.map((productType, i) => {
+									return <option value={productType.value} key={i}>
+											{productType.name}
+										</option>;
+								})}
+							</select>
+						{this.state.productTypeSelected === true ? 
+							<select onChange={this.setCategory} name="selectedCategory" value={this.state.selectedProductType.categories}>
+								{this.state.selectedProductCategories.map((category, i) => {
+									return (
+										<option value={category} key={i}> 
+											{category}
+										</option>
+									)
+								})}
+							</select> 
+						: null  }
+							
+							<input type="submit" value="Submit" />
+						</form>
+						<ProductList products={this.state.productsToDisplay}
+												currentUserId={this.state.currentUserId}
+												addToWishlist={this.addToWishlist}/>
+					</div>
+					<Footer/>
 			</div>
 		)
   }

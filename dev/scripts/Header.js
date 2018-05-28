@@ -6,16 +6,30 @@ import {
 
 
 const Header = () => {
-    return (
-        <header>
-            <h1>
-                <span>Kit</span>Hub
-            </h1>
-            <nav className="main-nav">
-                Nav will go here
-            </nav>
-        </header>
-    )
+	return(
+    <header>
+        <h1>
+            <span>Kit</span>Hub
+        </h1>
+        <nav className="main-nav">
+				<ul>
+					<li>
+						Sign-In
+					</li>
+					<li>Wishlist</li>
+					<li>My Kit</li>
+					{/* <li>
+						<NavLink to="/sign-in">Sign In</NavLink>
+					</li>
+					<li><NavLink to="/wishlist" >Wishlist</NavLink></li>
+					<li><NavLink to="myKit" >My Kit</NavLink></li> */}
+				</ul>
+				
+	
+        </nav>
+    </header>
+
+	)
 }
 
 export default Header;

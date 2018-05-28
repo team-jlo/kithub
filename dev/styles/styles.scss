@@ -11,3 +11,29 @@ Designed and built by Jackie Lealess, Orry Mevorach, and Laura-Louise Tobin
 @import 'header';
 @import 'sign-in';
 @import 'product';
+
+
+
+
+/* =========================================
+MAIN STYLES
+============================================ */
+
+html{
+	font-size:62.5%;
+}
+
+img{
+	display: block;
+	max-width: 100%;
+}
+
+.wrapper{
+	border: 3px solid black;
+	width: 85%;
+	margin: 75px auto;
+}
+
+ul{
+	list-style:none;
+}

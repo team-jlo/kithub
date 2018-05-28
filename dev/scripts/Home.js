@@ -1,8 +1,11 @@
 import React from 'react';
+import ProductList from './ProductList';
 
 const Home = (props) => {
     return (
 
+
+			<div className="home">
         <form action="" onSubmit={props.handleSubmit}>
             <select name="selectedProductType" value={props.selectedProductType} onChange={props.handleChange}>
                 {props.productTypes.map((productType, i) => {
@@ -25,6 +28,7 @@ const Home = (props) => {
 
             <input type="submit" value="Submit" />
         </form>
+				</div>
     )
 }
 

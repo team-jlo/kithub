@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 
 
-const Header = () => {
+const Header = (props) => {
 	return(
     <header>
         <h1>
@@ -27,6 +27,10 @@ const Header = () => {
 				
 	
         </nav>
+        <div className="login">
+            {props.loggedIn === false && <button onClick={props.loginWithGoogle}>Login with Google</button>}
+            {props.loggedIn === true ? <button onClick={props.logout}>Logout</button> : null}
+        </div>
     </header>
 
 	)

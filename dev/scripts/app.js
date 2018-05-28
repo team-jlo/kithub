@@ -9,6 +9,7 @@ import {
 import ProductList from './ProductList';
 import Header from './Header';
 import Footer from './Footer';
+import Home from './Home.js'
 
 const config = {
   apiKey: "AIzaSyCqf-B49wkmM2dxSkJoOR1uwF0lfypU-vw",
@@ -39,7 +40,7 @@ class App extends React.Component {
         { name: 'Mascara', value: 'mascara', categories: ['All'] },
         { name: 'Nail Polish', value: 'nail_polish', categories: ['All'] }
       ],
-      productTypeSelected: false,
+      isProductTypeSelected: false,
       selectedProductType: '',
       selectedProductCategories: [],
       searchQuery: '',
@@ -118,7 +119,7 @@ class App extends React.Component {
   handleChange(e) {    
     this.setState({ 
       [e.target.name]: e.target.value,
-      productTypeSelected: true
+      isProductTypeSelected: true
     }, () => {
       this.getResultsByProductType();
     });
@@ -216,43 +217,38 @@ getProducts(){
 
   render() {
     return (
-			<div className="wrapper">
-					<Header />
-				<div>
-						<div className="login">
-							{this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
-							{this.state.loggedIn === true ? <button onClick={this.logout}>Logout</button> : null}
-						</div>
-						<form action="" onSubmit={this.handleSubmit}>
-							<select name="selectedProductType" value={this.state.selectedProductType} onChange={this.handleChange}>
-								{this.state.productTypes.map((productType, i) => {
-									return <option value={productType.value} key={i}>
-											{productType.name}
-										</option>;
-								})}
-							</select>
-						{this.state.productTypeSelected === true ? 
-							<select onChange={this.setCategory} name="selectedCategory" value={this.state.selectedProductType.categories}>
-								{this.state.selectedProductCategories.map((category, i) => {
-									return (
-										<option value={category} key={i}> 
-											{category}
-										</option>
-									)
-								})}
-							</select> 
-						: null  }
-							
-							<input type="submit" value="Submit" />
-						</form>
-						<ProductList products={this.state.productsToDisplay}
-												currentUserId={this.state.currentUserId}
-												addToWishlist={this.addToWishlist}
-                        addToKit={this.addToKit}
-                        />
-					</div>
+			<Router>
+        <div className="wrapper">
+					<Header 
+            loggedIn={this.state.loggedIn}
+            loginWithGoogle={this.loginWithGoogle}
+            logout={this.logout}
+          />
+
+          <Route path="/" exact render={() => 
+            <Home
+              handleSubmit={this.handleSubmit}
+              selectedProductType={this.state.selectedProductType}
+              handleChange={this.handleChange}
+              productTypes={this.state.productTypes}
+              isProductTypeSelected={this.state.isProductTypeSelected}
+              setCategory={this.setCategory}
+              selectedProductCategories={this.state.selectedProductCategories}
+            /> 
+          }/>
+
+          <Route path="/" exact render={() =>
+            <ProductList
+              products={this.state.productsToDisplay}
+              currentUserId={this.state.currentUserId}
+              addToWishlist={this.addToWishlist}
+              addToKit={this.addToKit}
+            />
+          }/>
+					
 					<Footer/>
-			</div>
+			  </div> 
+      </Router>
 		)
   }
 }

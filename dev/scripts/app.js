@@ -47,17 +47,16 @@ class App extends React.Component {
 			productsToDisplay: [],
       categoryToDisplay: '',
       currentUserId: '',
-      currentUserName: '',
-      // Orry added this in
       currentUser: '',
       loggedIn: false
-
   }
+
     this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
     this.setCategory = this.setCategory.bind(this);
 		this.loginWithGoogle = this.loginWithGoogle.bind(this);
-		this.addToWishlist = this.addToWishlist.bind(this);	
+    this.addToWishlist = this.addToWishlist.bind(this);	
+    this.addToKit = this.addToKit.bind(this)
   }
 
   componentDidMount() {
@@ -80,11 +79,9 @@ class App extends React.Component {
           }
           else {
             console.log('new user created');
-            // *** changed const to a let ***
             let loggedInUser = {
               userId: user.uid,
               userName: user.displayName,
-							wishKitArray: []
             }
           this.setState({
             loggedIn: true,
@@ -164,7 +161,6 @@ class App extends React.Component {
 getProducts(){
 		const queryResults = Array.from(this.state.queryResults);
 		let productsWithCurrentCategory = [];
-		// console.log('calling get products', queryResults.length);
 
 		if(this.state.categoryToDisplay === 'All'){
 			
@@ -173,7 +169,6 @@ getProducts(){
 
 			for (let i = 0; i < queryResults.length; i++){	
 				if(queryResults[i].category === this.state.categoryToDisplay.replace(/\s/g, '_').toLowerCase() ){
-						// console.log(queryResults[i]);
 							productsWithCurrentCategory.push(queryResults[i]);
 					}
 				}
@@ -184,51 +179,39 @@ getProducts(){
 	}
 	handleSubmit(e) {
 		e.preventDefault();
-	}
-
-	addToWishlist(productId) {
-    let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
-    let dbRefWishKitArray = firebase.database().ref(`users/${this.state.currentUserId}/wishKitArray/${productId}`);
-
-    
-		dbRefUser.once('value').then((snapshot) => {
-
-      let inWishKit = snapshot.child('wishKit').exists()
-			if (inWishKit === false) {
-        const newWishKit = {
-          productId: productId,
-          inWishList: true
-        }
-        dbRefWishKitArray.set(newWishKit);
-        
-        console.log('wishkit doesnt exist')
-			}
-      else { 
-        let wishKit = snapshot.val().wishKit
-        const wishKitArray = Object.values(wishKit)
-        
-        
-          if (wishKitArray.indexOf(productId) === -1) {
-            console.log('its not in the array')
-            dbRefUser.child("wishKit").push(productId)
-          }
-			}
-		});
   }
   
-  addToKit() {
+	addToWishlist(productId, productName, productBrand, productImage, productDescription) {
+    let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
+    let dbRefWishList = firebase.database().ref(`users/${this.state.currentUserId}/wishList/${productId}`);
 
+    const newWishListItem = {
+      productId: productId,
+      productName: productName,
+      productImage: productImage,
+      productDescription: productDescription,
+      productBrand: productBrand,
+      inWishList: true    
+    }
+
+    dbRefWishList.set(newWishListItem);
   }
-	// will check to see if this item is 1) in user's wishKit 2) if it is, then does if have a wishList property of true.
-	// if in wishKit, change property.. if not, push to array. 
+  
+  addToKit(productId, productName, productBrand, productImage, productDescription) {
+    let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
+    let dbRefKit = firebase.database().ref(`users/${this.state.currentUserId}/kit/${productId}`);
 
-	// if(item with this product id is NOT in wishkit ){
-	// dbRefUser.wishKit.push( whole object plus inwishList property : true)
-	// } else if { it's IN wishKit already, change inWishlist property from false to true
+    const newKitItem = {
+      productId: productId,
+      productName: productName,
+      productImage: productImage,
+      productDescription: productDescription,
+      productBrand: productBrand,
+      inKit: true
+    }
 
-//	} else if {
-	// return true
-// }
+    dbRefKit.set(newKitItem);
+  }
 
 
   render() {
@@ -264,7 +247,9 @@ getProducts(){
 						</form>
 						<ProductList products={this.state.productsToDisplay}
 												currentUserId={this.state.currentUserId}
-												addToWishlist={this.addToWishlist}/>
+												addToWishlist={this.addToWishlist}
+                        addToKit={this.addToKit}
+                        />
 					</div>
 					<Footer/>
 			</div>

@@ -4,6 +4,7 @@ import ProductList from './ProductList';
 const Home = (props) => {
     return (
 
+
 			<div className="home">
         <form action="" onSubmit={props.handleSubmit}>
             <select name="selectedProductType" value={props.selectedProductType} onChange={props.handleChange}>

@@ -251,7 +251,7 @@ getProducts(){
 							products={this.state.productsToDisplay}
 							currentUserId={this.state.currentUserId}
 							addToWishlist={this.addToWishlist}
-							addToKit={this.addToKit}
+              addToKit={this.addToKit}
             /> 
           }/>
 					<Route path="/wishlist" render={() => 
@@ -283,7 +283,8 @@ getProducts(){
               addToWishlist={this.addToWishlist}
 							addToKit={this.addToKit}
 							button1Text={"Add to wishlist!!!"}
-							button2Text={"Add to kit?????"}
+              button2Text={"Add to kit?????"}
+              loggedIn={this.state.loggedIn}
             />
           }/>
 					

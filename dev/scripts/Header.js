@@ -13,24 +13,18 @@ const Header = (props) => {
         </h1>
         <nav className="main-nav">
 				<ul>
-					<li>
-						Sign-In
+					<li className="login">
+						{props.loggedIn === false && <button onClick={props.loginWithGoogle}>Login with Google</button>}
+						{props.loggedIn === true ? <button onClick={props.logout}>Logout</button> : null}
 					</li>
-					<li>Wishlist</li>
-					<li>My Kit</li>
-					{/* <li>
-						<NavLink to="/sign-in">Sign In</NavLink>
-					</li>
+
+					<li><NavLink to="/">Home </NavLink> </li>
 					<li><NavLink to="/wishlist" >Wishlist</NavLink></li>
-					<li><NavLink to="myKit" >My Kit</NavLink></li> */}
+					<li><NavLink to="myKit" >My Kit</NavLink></li>
 				</ul>
-				
-	
+			
         </nav>
-        <div className="login">
-            {props.loggedIn === false && <button onClick={props.loginWithGoogle}>Login with Google</button>}
-            {props.loggedIn === true ? <button onClick={props.logout}>Logout</button> : null}
-        </div>
+
     </header>
 
 	)

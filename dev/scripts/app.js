@@ -9,7 +9,9 @@ import {
 import ProductList from './ProductList';
 import Header from './Header';
 import Footer from './Footer';
-import Home from './Home.js'
+import Home from './Home';
+import Kit from './Kit';
+import Wishlist from './Wishlist';
 
 const config = {
   apiKey: "AIzaSyCqf-B49wkmM2dxSkJoOR1uwF0lfypU-vw",
@@ -49,7 +51,10 @@ class App extends React.Component {
       categoryToDisplay: '',
       currentUserId: '',
       currentUser: '',
-      loggedIn: false
+			loggedIn: false,
+			displayAddToWishlist: true,
+			displayAddToKit: true,
+			displayRemove: true,
   }
 
     this.handleChange = this.handleChange.bind(this);
@@ -214,7 +219,6 @@ getProducts(){
     dbRefKit.set(newKitItem);
   }
 
-
   render() {
     return (
 			<Router>
@@ -233,16 +237,32 @@ getProducts(){
               productTypes={this.state.productTypes}
               isProductTypeSelected={this.state.isProductTypeSelected}
               setCategory={this.setCategory}
-              selectedProductCategories={this.state.selectedProductCategories}
+							selectedProductCategories={this.state.selectedProductCategories}
+							products={this.state.productsToDisplay}
+							currentUserId={this.state.currentUserId}
+							addToWishlist={this.addToWishlist}
+							addToKit={this.addToKit}
             /> 
           }/>
+					<Route path="/wishlist" render={() => 
+					<Wishlist
+					
+					/> } />
+
+
+					<Route path="/kit" render={() =>
+						<Kit
+							
+						/>} />
 
           <Route path="/" exact render={() =>
             <ProductList
               products={this.state.productsToDisplay}
               currentUserId={this.state.currentUserId}
               addToWishlist={this.addToWishlist}
-              addToKit={this.addToKit}
+							addToKit={this.addToKit}
+							button1Text={"Add to wishlist!!!"}
+							button2Text={"Add to kit?????"}
             />
           }/>
 					

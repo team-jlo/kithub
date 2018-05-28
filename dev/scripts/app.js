@@ -255,7 +255,7 @@ getProducts(){
             /> 
           }/>
 					<Route path="/wishlist" render={() => 
-					<Wishlist
+					<ProductList
               products={this.state.currentUserWishlist}
               currentUserId={this.state.currentUserId}
               addToWishlist={this.addToWishlist}

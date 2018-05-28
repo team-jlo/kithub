@@ -11,6 +11,7 @@ const Kit = (props) => {
 return (
 
 	<div className="myKit">
+		{/* <ProductList /> */}
 	</div>
 
 

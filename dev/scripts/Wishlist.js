@@ -9,6 +9,7 @@ import ProductList from './ProductList';
 const Wishlist = (props) => {
 	return(
 		<div className="Wishlist">
+		{/* <ProductList /> */}
 		</div>
 
 	)

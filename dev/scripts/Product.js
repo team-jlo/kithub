@@ -20,12 +20,11 @@ const Product = (props) => {
                 </span>
             </h3>
             <img src={props.image_link} alt={props.name} className="product__image" />
-            <p className="product__price">${props.price}</p>
             <p className="product__description">
                 {props.description}
             </p>
-            <button onClick={() =>{props.addToWishlist(props.id)}} className="button button__wishlist button__toggle">Add to wishlist</button>
-            <button className="button button__kit button__toggle">Add to kit</button>
+            <button onClick={() =>{props.addToWishlist(props.id, props.name, props.brand, props.image_link, props.description)}} className="button button__wishlist button__toggle">Add to WishList</button>
+            <button onClick={() => { props.addToKit(props.id, props.name, props.brand, props.image_link, props.description)}} className="button button__kit button__toggle">Add to kit</button>
         </div>
 		);
 }

@@ -122,7 +122,7 @@ class App extends React.Component {
       isProductTypeSelected: true
     }, () => {
       this.getResultsByProductType();
-    });
+    }); 
   }
 
   getResultsByProductType() {
@@ -141,14 +141,14 @@ class App extends React.Component {
       })
     });
 	}
-	setCategory(e){
+  
+  setCategory(e){
 		this.setState({
 			[e.target.name]: e.target.value,
-				categoryToDisplay: e.target.value
-		}, () => {
-			this.getProducts();
-		}  )
-	}
+			categoryToDisplay: e.target.value
+    })
+  }
+  
 	getCategory() {
 		let products = this.state.productTypes;	
     for(let i = 0; i < products.length; i++){
@@ -179,7 +179,8 @@ getProducts(){
 		)
 	}
 	handleSubmit(e) {
-		e.preventDefault();
+    e.preventDefault();
+    this.getProducts()
   }
   
 	addToWishlist(productId, productName, productBrand, productImage, productDescription) {

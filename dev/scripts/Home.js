@@ -3,7 +3,6 @@ import React from 'react';
 const Home = (props) => {
     return (
 
-    
         <form action="" onSubmit={props.handleSubmit}>
             <select name="selectedProductType" value={props.selectedProductType} onChange={props.handleChange}>
                 {props.productTypes.map((productType, i) => {

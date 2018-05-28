@@ -17,8 +17,10 @@ const Product = (props) => {
             <p className="product__description">
                 {props.description}
             </p>
-            <button onClick={() =>{props.addToWishlist(props.id, props.name, props.brand, props.image_link, props.description)}} className="button button__wishlist button__toggle">{props.button1Text}</button>
-            <button onClick={() => { props.addToKit(props.id, props.name, props.brand, props.image_link, props.description)}} className="button button__kit button__toggle">{props.button2Text}}</button>
+            {props.loggedIn === true ? <button onClick={() => { props.addToWishlist(props.id, props.name, props.brand, props.image_link, props.description) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
+            {props.loggedIn === true ? <button onClick={() => { props.addToKit(props.id, props.name, props.brand, props.image_link, props.description) }} className="button button__kit button__toggle">{props.button2Text}}</button> : null}
+            
+            
         </div>
 		);
 }

@@ -54,7 +54,9 @@ class App extends React.Component {
 			loggedIn: false,
 			displayAddToWishlist: true,
 			displayAddToKit: true,
-			displayRemove: true,
+      displayRemove: true,
+      currentUserWishlist: [],
+      currentUserKit: []
   }
 
     this.handleChange = this.handleChange.bind(this);
@@ -76,11 +78,18 @@ class App extends React.Component {
         dbRefUser.on('value', (snapshot) => {
           if (snapshot.exists()) {
             let loggedInUser = snapshot.val();
+            let loggedInUserKit = loggedInUser.kit;
+            let loggedInUserWishlist = loggedInUser.wishList;
+            let loggedInUserWishlistArray = Object.values(loggedInUserWishlist);
+            let loggedInUserKitArray = Object.values(loggedInUserKit);
+
             this.setState({
               loggedIn: true,
               currentUser: loggedInUser,
-              currentUserId: loggedInUser.userId
-            });
+              currentUserId: loggedInUser.userId,
+              currentUserWishlist: loggedInUserWishlistArray,
+              currentUserKit: loggedInUserKitArray
+            }, () => { console.log(this.state.currentUserWishlist, this.state.currentUserKit)});
             this.dbRefUser = dbRefUser;
           }
           else {
@@ -193,11 +202,11 @@ getProducts(){
     let dbRefWishList = firebase.database().ref(`users/${this.state.currentUserId}/wishList/${productId}`);
 
     const newWishListItem = {
-      productId: productId,
-      productName: productName,
-      productImage: productImage,
-      productDescription: productDescription,
-      productBrand: productBrand,
+      id: productId,
+      name: productName,
+      image_link: productImage,
+      description: productDescription,
+      brand: productBrand,
       inWishList: true    
     }
 
@@ -209,11 +218,11 @@ getProducts(){
     let dbRefKit = firebase.database().ref(`users/${this.state.currentUserId}/kit/${productId}`);
 
     const newKitItem = {
-      productId: productId,
-      productName: productName,
-      productImage: productImage,
-      productDescription: productDescription,
-      productBrand: productBrand,
+      id: productId,
+      name: productName,
+      image_link: productImage,
+      description: productDescription,
+      brand: productBrand,
       inKit: true
     }
 
@@ -247,12 +256,23 @@ getProducts(){
           }/>
 					<Route path="/wishlist" render={() => 
 					<Wishlist
+              products={this.state.currentUserWishlist}
+              currentUserId={this.state.currentUserId}
+              addToWishlist={this.addToWishlist}
+              addToKit={this.addToKit}
+              button1Text={"Remove from wishlist!!!"}
+              button2Text={"Add to kit?????"}
 					
 					/> } />
 
-
-					<Route path="/kit" render={() =>
-						<Kit
+					<Route path="/myKit" render={() =>
+						<ProductList
+              products={this.state.currentUserKit}
+              currentUserId={this.state.currentUserId}
+              addToWishlist={this.addToWishlist}
+              addToKit={this.addToKit}
+              button1Text={"Remove from kit!!!"}
+              button2Text={"Add to wishlist?????"}
 							
 						/>} />
 

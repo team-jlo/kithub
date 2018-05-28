@@ -16,9 +16,9 @@ const ProductList = (props) => {
                     price={product.price}
                     currentUserId={props.currentUserId}
                     addToWishlist={props.addToWishlist}
-										addToKit={props.addToKit}
-										button1Text={props.button1Text}
-										button2Text={props.button2Text}
+					addToKit={props.addToKit}
+					button1Text={props.button1Text}
+					button2Text={props.button2Text}
                 />
                 </li>
                 )

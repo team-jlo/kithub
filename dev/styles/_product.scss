@@ -6,12 +6,13 @@
 .product {
 	background: white;
 	width: calc(25% - 40px);
+	margin: 20px 20px 30px 20px;
 	min-width: 200px;
-	margin: 20px;
 	border: 2px solid $light-blue;
 	box-shadow: 3px 3px 0px $light-blue;
 	padding: 10px;
-	height: 430px;
+	height: 450px;
+	position: relative; // so we can position-absolute the buttons
 	span{
 		display: block;
 	}
@@ -34,6 +35,7 @@
 
 .product__image--container{
 	color: inherit;
+	position: relative;
 	img{
 		margin: 0 auto;
 	}
@@ -47,4 +49,11 @@
 	margin: 2px;
 }
 
+.buttons {
+	position: absolute;
+	bottom: 10px;
+	width: 85%;
+	left: 50%;
+	transform: translateX(-50%);
+}
 

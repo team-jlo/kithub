@@ -16,7 +16,7 @@ const Product = (props) => {
             </h3>
 
 		    <div className="product__image--container">
-            	<img src={props.image_link} alt={props.name} className="product__image" />
+                <img src={props.image_link} alt={props.name} className="product__image" />
             </div>	
 					
             <div className="buttons">

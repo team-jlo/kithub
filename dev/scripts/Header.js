@@ -11,7 +11,7 @@ const Header = (props) => {
         <h1>
 			<img src="images/kithub-logo.svg" alt="Kithub" />
         </h1>
-        <nav className="main-nav">
+        <nav className="main-nav clearfix">
 				<ul className="clearfix">
 
 					<li className="login">

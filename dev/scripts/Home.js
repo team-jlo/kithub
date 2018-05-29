@@ -7,7 +7,9 @@ const Home = (props) => {
 		<div className="home">
 				<p className="intro">Search for makeup products by type and category, and keep track of your favourites! Add products you own to your makeup Kit, and save coveted cosmetics to your Wishlist!</p>
 
+						
             <form action="" onSubmit={props.handleSubmit}>
+						<h3>Search for Products</h3>
                 <select name="selectedProductType" value={props.selectedProductType} onChange={props.handleChange}>
                     {props.productTypes.map((productType, i) => {
                         return <option value={productType.value} key={i}>
@@ -27,7 +29,7 @@ const Home = (props) => {
                     </select>
                     : null}
 
-                <input type="submit" value="Submit" />
+                <input  className="button" type="submit" value="Submit" />
             </form> 
             
 		</div>

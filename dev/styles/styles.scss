@@ -12,7 +12,6 @@ Designed and built by Jackie Lealess, Orry Mevorach, and Laura-Louise Tobin
 @import 'sign-in';
 @import 'product';
 @import 'button';
-@import 'animations';
 @import 'footer';
 
 
@@ -43,7 +42,6 @@ ul{
 body{
 	background-image: url(../../assets/background-body.jpg);
 	background-attachment:fixed;
-	// background-position: center;
 	background-repeat: no-repeat;
 	background-size:cover;
 }
@@ -57,9 +55,13 @@ HOME
 	margin: 20px 50px;
 }
 
+/* ------------  FORM STYLING  ------------ */
+
+
+
 form{
-	border: 1px solid green;
 	padding: 20px;
-	margin: 20px;
+	margin: 20px auto;
+	width: 40%;
 }
 

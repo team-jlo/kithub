@@ -4,8 +4,8 @@
 
 .product {
 	width: calc(25% - 40px);
-	margin: 20px;
 	min-width: 200px;
+	margin: 20px;
 	border: 2px solid $light-blue;
 	box-shadow: 3px 3px 0px $light-blue;
 	padding: 10px;
@@ -17,7 +17,7 @@
 		color: $med-purple;
 	}
 	a:visited{
-		color: inherit;
+		color: $med-purple;
 	}
 }
 
@@ -38,4 +38,8 @@
 
 .color-set__item{
 	border-radius: 50%;
+	width:10px;
+	height:10px;
+	display:inline-block;
+	margin: 2px;
 }

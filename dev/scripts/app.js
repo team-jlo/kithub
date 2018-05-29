@@ -205,7 +205,7 @@ getProducts(){
     this.getProducts()
   }
   
-  addToWishlist(productId, productList, productName, productBrand, productImage) {
+  addToWishlist(productId, productList, productName, productBrand, productImage, productColors, productLink) {
     console.log("adding to wishlist");
     let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
     let dbRefWishList = firebase.database().ref(`users/${this.state.currentUserId}/wishList/${productId}`);
@@ -215,13 +215,13 @@ getProducts(){
       name: productName,
       image_link: productImage,
       brand: productBrand,
-			product_colors: product_colors
+			product_colors: productColors,
+			product_link: productLink
     }
-
     dbRefWishList.set(newWishListItem);
   }
   
-  addToKit(productId, productList, productName, productBrand, productImage) {
+  addToKit(productId, productList, productName, productBrand, productImage, productColors, productLink) {
     console.log("adding to kit");
     let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
     let dbRefKit = firebase.database().ref(`users/${this.state.currentUserId}/kit/${productId}`);
@@ -231,7 +231,8 @@ getProducts(){
       name: productName,
       image_link: productImage,
 			brand: productBrand,
-			product_colors: product_colors
+			product_colors: productColors,
+			product_link: productLink
     }
     dbRefKit.set(newKitItem);
   }

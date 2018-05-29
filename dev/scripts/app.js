@@ -143,8 +143,9 @@ class App extends React.Component {
     }); 
   }
 
-  removeProduct(productId, productName, productBrand, productImage, productDescription) {
-    console.log(`removing ${productId}`)
+  removeProduct(productId, productList, productName, productBrand, productImage, productDescription) {
+    console.log(`removing ${productId}`);
+    firebase.database().ref(`users/${this.state.currentUserId}/${productList}/${productId}`).remove();
   }
 
   getResultsByProductType() {
@@ -205,7 +206,8 @@ getProducts(){
     this.getProducts()
   }
   
-	addToWishlist(productId, productName, productBrand, productImage, productDescription) {
+  addToWishlist(productId, productList, productName, productBrand, productImage, productDescription) {
+    console.log("adding to wishlist");
     let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
     let dbRefWishList = firebase.database().ref(`users/${this.state.currentUserId}/wishList/${productId}`);
 
@@ -221,7 +223,8 @@ getProducts(){
     dbRefWishList.set(newWishListItem);
   }
   
-  addToKit(productId, productName, productBrand, productImage, productDescription) {
+  addToKit(productId, productList, productName, productBrand, productImage, productDescription) {
+    console.log("adding to kit");
     let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
     let dbRefKit = firebase.database().ref(`users/${this.state.currentUserId}/kit/${productId}`);
 
@@ -257,45 +260,47 @@ getProducts(){
 							selectedProductCategories={this.state.selectedProductCategories}
 							products={this.state.productsToDisplay}
 							currentUserId={this.state.currentUserId}
-							addToWishlist={this.addToWishlist}
-              addToKit={this.addToKit}
+							button1Handler={this.addToWishlist}
+              button2Handler={this.addToKit}
               button1Text={"Add to wishlist"}
               button2Text={"Add to kit"}
               loggedIn={this.state.loggedIn}
+              context={"products"}
             /> 
           }/>
 					<Route path="/my-wishlist" render={() => 
 					<ProductList
               products={this.state.currentUserWishlist}
               currentUserId={this.state.currentUserId}
-              addToWishlist={this.addToWishlist}
               addToKit={this.addToKit}
+              button1Handler={this.removeProduct}
+              button2Handler={this.addToKit}
               button1Text={"Remove from wishlist"}
               button2Text={"Add to kit"}
               loggedIn={this.state.loggedIn}
-
+              context={"wishList"}
 					/> } />
 
 					<Route path="/my-kit" render={() =>
 						<ProductList
               products={this.state.currentUserKit}
               currentUserId={this.state.currentUserId}
-              addToWishlist={this.addToWishlist}
-              addToKit={this.addToKit}
+              button1Handler={this.addToWishlist}
+              button2Handler={this.addToKit}
               button2Text={"Remove from kit"}
               button1Text={"Add to wishlist"}
               loggedIn={this.state.loggedIn}
               addToWishlist={this.addToWishlist}
               addToKit={this.removeProduct}
-							
+              context={"kit"}
 						/>} />
 
           <Route path="/" exact render={() =>
             <ProductList
               products={this.state.productsToDisplay}
               currentUserId={this.state.currentUserId}
-              addToWishlist={this.addToWishlist}
-							addToKit={this.addToKit}
+              button1Handler={this.addToWishlist}
+							button2Handler={this.addToKit}
 							button1Text={"Add to wishlist"}
               button2Text={"Add to kit"}
               loggedIn={this.state.loggedIn}

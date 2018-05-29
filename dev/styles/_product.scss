@@ -1,14 +1,17 @@
 .product_li{
 	float: left;
+	max-width: 250px;
 }
 
 .product {
+	background: white;
 	width: calc(25% - 40px);
 	min-width: 200px;
 	margin: 20px;
 	border: 2px solid $light-blue;
 	box-shadow: 3px 3px 0px $light-blue;
 	padding: 10px;
+	height: 430px;
 	span{
 		display: block;
 	}
@@ -43,3 +46,5 @@
 	display:inline-block;
 	margin: 2px;
 }
+
+

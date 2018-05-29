@@ -5,8 +5,7 @@ const Home = (props) => {
     return (
 
 		<div className="home">
-            {props.loggedIn !== true ? <h1>To Use This Feature, Please Log In :) </h1>
-            : 
+            
             <form action="" onSubmit={props.handleSubmit}>
                 <select name="selectedProductType" value={props.selectedProductType} onChange={props.handleChange}>
                     {props.productTypes.map((productType, i) => {
@@ -30,9 +29,6 @@ const Home = (props) => {
                 <input type="submit" value="Submit" />
             </form> 
             
-            }
-            {/* The closing bracket above closes the ternary operator */}
-								
 		</div>
     )
 }

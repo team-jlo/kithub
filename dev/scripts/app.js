@@ -144,6 +144,7 @@ class App extends React.Component {
 
   removeProduct(productId, productList, productName, productBrand, productImage) {
     console.log(`removing ${productId}`);
+    console.log(`${this.state.currentUserId}/${productList}/${productId}`);
     firebase.database().ref(`users/${this.state.currentUserId}/${productList}/${productId}`).remove();
   }
 
@@ -199,7 +200,8 @@ getProducts(){
 		this.setState(
 			{ productsToDisplay : productsWithCurrentCategory }
 		)
-	}
+  }
+  
 	handleSubmit(e) {
     e.preventDefault();
     this.getProducts()
@@ -214,9 +216,7 @@ getProducts(){
       id: productId,
       name: productName,
       image_link: productImage,
-      brand: productBrand,
-			// product_colors: productColors,
-			// product_link: productLink
+      brand: productBrand
     }
     dbRefWishList.set(newWishListItem);
   }
@@ -230,9 +230,7 @@ getProducts(){
       id: productId,
       name: productName,
       image_link: productImage,
-			brand: productBrand,
-			// product_colors: productColors,
-			// product_link: productLink
+			brand: productBrand
     }
     dbRefKit.set(newKitItem);
   }
@@ -283,9 +281,9 @@ getProducts(){
               products={this.state.currentUserKit}
               currentUserId={this.state.currentUserId}
               button1Text={"Add to wishlist"}
-              button1Handler={this.removeProduct}
+              button1Handler={this.addToWishlist}
               button2Text={"Remove from kit"}
-              button2Handler={this.addToKit}
+              button2Handler={this.removeProduct}
               loggedIn={this.state.loggedIn}
               context={"kit"}
 						/>} />

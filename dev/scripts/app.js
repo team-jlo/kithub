@@ -131,8 +131,6 @@ class App extends React.Component {
   logout() {
     firebase.auth().signOut();
     this.dbRef.off('value');
-    const emptyUserKit = [];
-    const emptyUserWishList = [];
   }
   
   handleChange(e) {    

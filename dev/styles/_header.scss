@@ -2,8 +2,6 @@
 HEADER
 ============================================ */
 
-
-
 header {
 
     h1 {
@@ -20,11 +18,12 @@ header {
 }
 
 nav{
+	ul{
+		float:right;
+
 	li{
 		padding: 5px;
-		float:right;
-		
-        
+		float:left;
         a {
             color: $link-color;
             font-weight: bold;
@@ -41,5 +40,6 @@ nav{
                 color: $dark-purple;
             }
         }
+		}
 	}
 }

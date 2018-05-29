@@ -2,5 +2,13 @@
     p {
         font-weight: $bold;
         text-align: center;
-    }
+		}
+		a{
+			color: $link-color;
+			&:hover {
+			color: $link-color-hover;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
 }

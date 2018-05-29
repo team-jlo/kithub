@@ -21,7 +21,8 @@ const ProductList = (props) => {
                                         description={product.description}
                                         id={product.id}
                                         image_link={product.image_link}
-                                        name={product.name}
+																				name={product.name}
+																				product_link={product.product_link}
                                         currentUserId={props.currentUserId}
                                         button1Handler={props.button1Handler}
                                         button2Handler={props.button2Handler}

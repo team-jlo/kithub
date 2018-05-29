@@ -21,7 +21,7 @@
 		color: $med-purple;
 	}
 	a:visited{
-		color: inherit;
+		color: $med-purple;
 	}
 }
 
@@ -43,6 +43,10 @@
 
 .color-set__item{
 	border-radius: 50%;
+	width:10px;
+	height:10px;
+	display:inline-block;
+	margin: 2px;
 }
 
 .buttons {
@@ -52,3 +56,4 @@
 	left: 50%;
 	transform: translateX(-50%);
 }
+

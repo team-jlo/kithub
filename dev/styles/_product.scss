@@ -3,4 +3,22 @@
 	margin: 20px;
 	min-width: 200px;
 	float: left;
+	border: 2px solid $light-blue;
+	box-shadow: 3px 3px 0px $light-blue
+}
+
+.product__name{
+	color: inherit;
+}
+
+.product.brand{
+	text-transform: uppercase;
+}
+
+.product__image--container{
+	color: inherit;
+}
+
+.color-set__item{
+	border-radius: 50%;
 }

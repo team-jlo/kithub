@@ -13,10 +13,10 @@ const Product = (props) => {
                     {props.name}
                 </span>
             </h3>
+						<div className="product__image--container">
             <img src={props.image_link} alt={props.name} className="product__image" />
-            <p className="product__description">
-                {props.description}
-            </p>
+						</div>	
+						
             {props.loggedIn === true ? <button onClick={() => { props.addToWishlist(props.id, props.name, props.brand, props.image_link, props.description) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
             {props.loggedIn === true ? <button onClick={() => { props.addToKit(props.id, props.name, props.brand, props.image_link, props.description) }} className="button button__kit button__toggle">{props.button2Text}}</button> : null}
             

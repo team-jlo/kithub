@@ -13,7 +13,6 @@ const ProductList = (props) => {
                     id={product.id}
                     image_link={product.image_link}
                     name={product.name}
-                    price={product.price}
                     currentUserId={props.currentUserId}
                     addToWishlist={props.addToWishlist}
                     addToKit={props.addToKit}

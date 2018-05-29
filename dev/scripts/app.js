@@ -225,7 +225,6 @@ getProducts(){
       brand: productBrand,
       inKit: true
     }
-
     dbRefKit.set(newKitItem);
   }
 

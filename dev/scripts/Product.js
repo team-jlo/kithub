@@ -22,7 +22,8 @@ const Product = (props) => {
 							product_colors={props.product_colors}
 						/>
 						
-            {props.loggedIn === true ? <button onClick={() => { props.button1Handler(props.id, props.context, props.name, props.brand, props.image_link ) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
+						{props.loggedIn === true ? <button onClick={() => { props.button1Handler(props.id, props.context, props.name, props.brand, props.image_link ) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
+						
             {props.loggedIn === true ? <button onClick={() => { props.button2Handler(props.id, props.context, props.name, props.brand, props.image_link) }} className="button button__kit button__toggle">{props.button2Text}</button> : null}
                         
         </div>

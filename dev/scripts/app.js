@@ -10,6 +10,7 @@ import ProductList from './ProductList';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
+import PageHeading from './PageHeading';
 
 
 const config = {
@@ -264,7 +265,11 @@ getProducts(){
               context={"products"}
             /> 
           }/>
-					<Route path="/my-wishlist" render={() => 
+          <Route path="/my-wishlist"  render={() => 
+            <PageHeading text={"My Wishlist"} />
+          } />
+
+          <Route path="/my-wishlist" exact render={() => 
 					<ProductList
               products={this.state.currentUserWishlist}
               currentUserId={this.state.currentUserId}
@@ -275,8 +280,12 @@ getProducts(){
               loggedIn={this.state.loggedIn}
               context={"wishList"}
 					/> } />
+          <Route path="/my-kit" render={() =>
+            <PageHeading text={"My Kit"} />
+          } />
 
-					<Route path="/my-kit" render={() =>
+
+          <Route path="/my-kit" exact render={() =>
 						<ProductList
               products={this.state.currentUserKit}
               currentUserId={this.state.currentUserId}

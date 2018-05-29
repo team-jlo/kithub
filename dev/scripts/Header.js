@@ -18,9 +18,9 @@ const Header = (props) => {
 						{props.loggedIn === false && <button onClick={props.loginWithGoogle} className="link--button">Login with Google</button>}
 						{props.loggedIn === true ? <button className="link--button" onClick={props.logout}>Logout</button> : null}
 					</li>
-					<li><NavLink to="/">Home </NavLink> </li>
-					<li><NavLink to="/my-kit">My Kit</NavLink></li>
-					<li><NavLink to="/my-wishlist" >Wishlist</NavLink></li>
+					<li><NavLink exact to="/" activeClassName="active">Home </NavLink> </li>
+					<li><NavLink to="/my-kit" activeClassName="active">My Kit</NavLink></li>
+					<li><NavLink to="/my-wishlist" activeClassName="active">Wishlist</NavLink></li>
 				</ul>
 			
         </nav>

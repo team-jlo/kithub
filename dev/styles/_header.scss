@@ -17,6 +17,19 @@ nav{
 
 	li{
 		float: left;
-		padding: 5px;
+        padding: 5px;
+        
+        a {
+            color: $link-color;
+            font-weight: bold;
+            padding: 0 7px;
+            text-decoration: none;
+            transition: all 0.5s ease-in-out;
+
+            &:hover {
+                color: $link-color-hover;
+                text-decoration: underline;
+            }
+        }
 	}
 }

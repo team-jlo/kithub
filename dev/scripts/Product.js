@@ -17,8 +17,8 @@ const Product = (props) => {
             <img src={props.image_link} alt={props.name} className="product__image" />
 						</div>	
 						
-            {props.loggedIn === true ? <button onClick={() => { props.button1Handler(props.id, props.context, props.name, props.brand, props.image_link, props.description) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
-            {props.loggedIn === true ? <button onClick={() => { props.button2Handler(props.id, props.context, props.name, props.brand, props.image_link, props.description) }} className="button button__kit button__toggle">{props.button2Text}</button> : null}
+            {props.loggedIn === true ? <button onClick={() => { props.button1Handler(props.id, props.context, props.name, props.brand, props.image_link ) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
+            {props.loggedIn === true ? <button onClick={() => { props.button2Handler(props.id, props.context, props.name, props.brand, props.image_link) }} className="button button__kit button__toggle">{props.button2Text}</button> : null}
             
             
         </div>

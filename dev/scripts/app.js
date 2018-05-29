@@ -140,7 +140,7 @@ class App extends React.Component {
     }); 
   }
 
-  removeProduct(productId, productList, productName, productBrand, productImage, productDescription) {
+  removeProduct(productId, productList, productName, productBrand, productImage) {
     console.log(`removing ${productId}`);
     firebase.database().ref(`users/${this.state.currentUserId}/${productList}/${productId}`).remove();
   }
@@ -203,7 +203,7 @@ getProducts(){
     this.getProducts()
   }
   
-  addToWishlist(productId, productList, productName, productBrand, productImage, productDescription) {
+  addToWishlist(productId, productList, productName, productBrand, productImage) {
     console.log("adding to wishlist");
     let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
     let dbRefWishList = firebase.database().ref(`users/${this.state.currentUserId}/wishList/${productId}`);
@@ -212,15 +212,13 @@ getProducts(){
       id: productId,
       name: productName,
       image_link: productImage,
-      description: productDescription,
-      brand: productBrand,
-      inWishList: true    
+      brand: productBrand
     }
 
     dbRefWishList.set(newWishListItem);
   }
   
-  addToKit(productId, productList, productName, productBrand, productImage, productDescription) {
+  addToKit(productId, productList, productName, productBrand, productImage) {
     console.log("adding to kit");
     let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
     let dbRefKit = firebase.database().ref(`users/${this.state.currentUserId}/kit/${productId}`);
@@ -229,9 +227,7 @@ getProducts(){
       id: productId,
       name: productName,
       image_link: productImage,
-      description: productDescription,
-      brand: productBrand,
-      inKit: true
+      brand: productBrand
     }
     dbRefKit.set(newKitItem);
   }
@@ -257,10 +253,10 @@ getProducts(){
 							selectedProductCategories={this.state.selectedProductCategories}
 							products={this.state.productsToDisplay}
 							currentUserId={this.state.currentUserId}
-							button1Handler={this.addToWishlist}
-              button2Handler={this.addToKit}
               button1Text={"Add to wishlist"}
+							button1Handler={this.addToWishlist}
               button2Text={"Add to kit"}
+              button2Handler={this.addToKit}
               loggedIn={this.state.loggedIn}
               context={"products"}
             /> 
@@ -269,11 +265,10 @@ getProducts(){
 					<ProductList
               products={this.state.currentUserWishlist}
               currentUserId={this.state.currentUserId}
-              addToKit={this.addToKit}
-              button1Handler={this.removeProduct}
-              button2Handler={this.addToKit}
               button1Text={"Remove from wishlist"}
+              button1Handler={this.removeProduct}
               button2Text={"Add to kit"}
+              button2Handler={this.addToKit}
               loggedIn={this.state.loggedIn}
               context={"wishList"}
 					/> } />
@@ -282,13 +277,11 @@ getProducts(){
 						<ProductList
               products={this.state.currentUserKit}
               currentUserId={this.state.currentUserId}
-              button1Handler={this.addToWishlist}
-              button2Handler={this.addToKit}
-              button2Text={"Remove from kit"}
               button1Text={"Add to wishlist"}
+              button1Handler={this.removeProduct}
+              button2Text={"Remove from kit"}
+              button2Handler={this.addToKit}
               loggedIn={this.state.loggedIn}
-              addToWishlist={this.addToWishlist}
-              addToKit={this.removeProduct}
               context={"kit"}
 						/>} />
 
@@ -296,11 +289,12 @@ getProducts(){
             <ProductList
               products={this.state.productsToDisplay}
               currentUserId={this.state.currentUserId}
-              button1Handler={this.addToWishlist}
-							button2Handler={this.addToKit}
 							button1Text={"Add to wishlist"}
+              button1Handler={this.addToWishlist}
               button2Text={"Add to kit"}
+							button2Handler={this.addToKit}
               loggedIn={this.state.loggedIn}
+              context={"products"}
             />
           }/>
 					

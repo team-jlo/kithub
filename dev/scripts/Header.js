@@ -12,15 +12,15 @@ const Header = (props) => {
 			<img src="images/kithub-logo.svg" alt="Kithub" />
         </h1>
         <nav className="main-nav">
-				<ul>
+				<ul className="clearfix">
+
 					<li className="login">
 						{props.loggedIn === false && <button onClick={props.loginWithGoogle} className="link--button">Login with Google</button>}
 						{props.loggedIn === true ? <button className="link--button" onClick={props.logout}>Logout</button> : null}
 					</li>
-
 					<li><NavLink to="/">Home </NavLink> </li>
-					<li><NavLink to="/my-wishlist" >Wishlist</NavLink></li>
 					<li><NavLink to="/my-kit">My Kit</NavLink></li>
+					<li><NavLink to="/my-wishlist" >Wishlist</NavLink></li>
 				</ul>
 			
         </nav>

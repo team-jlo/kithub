@@ -252,6 +252,8 @@ getProducts(){
 							currentUserId={this.state.currentUserId}
 							addToWishlist={this.addToWishlist}
               addToKit={this.addToKit}
+              button1Text={"Add to wishlist"}
+              button2Text={"Add to kit"}
             /> 
           }/>
 					<Route path="/wishlist" render={() => 
@@ -260,8 +262,8 @@ getProducts(){
               currentUserId={this.state.currentUserId}
               addToWishlist={this.addToWishlist}
               addToKit={this.addToKit}
-              button1Text={"Remove from wishlist!!!"}
-              button2Text={"Add to kit?????"}
+              button1Text={"Remove from wishlist"}
+              button2Text={"Add to kit"}
 					
 					/> } />
 
@@ -271,8 +273,8 @@ getProducts(){
               currentUserId={this.state.currentUserId}
               addToWishlist={this.addToWishlist}
               addToKit={this.addToKit}
-              button1Text={"Remove from kit!!!"}
-              button2Text={"Add to wishlist?????"}
+              button1Text={"Remove from kit"}
+              button2Text={"Add to wishlist"}
 							
 						/>} />
 

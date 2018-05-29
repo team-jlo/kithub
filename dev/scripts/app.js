@@ -64,7 +64,8 @@ class App extends React.Component {
     this.setCategory = this.setCategory.bind(this);
 		this.loginWithGoogle = this.loginWithGoogle.bind(this);
     this.addToWishlist = this.addToWishlist.bind(this);	
-    this.addToKit = this.addToKit.bind(this)
+    this.addToKit = this.addToKit.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
   }
 
   componentDidMount() {
@@ -140,6 +141,10 @@ class App extends React.Component {
     }, () => {
       this.getResultsByProductType();
     }); 
+  }
+
+  removeProduct(productId, productName, productBrand, productImage, productDescription) {
+    console.log(`removing ${productId}`)
   }
 
   getResultsByProductType() {
@@ -256,9 +261,10 @@ getProducts(){
               addToKit={this.addToKit}
               button1Text={"Add to wishlist"}
               button2Text={"Add to kit"}
+              loggedIn={this.state.loggedIn}
             /> 
           }/>
-					<Route path="/wishlist" render={() => 
+					<Route path="/my-wishlist" render={() => 
 					<ProductList
               products={this.state.currentUserWishlist}
               currentUserId={this.state.currentUserId}
@@ -266,17 +272,21 @@ getProducts(){
               addToKit={this.addToKit}
               button1Text={"Remove from wishlist"}
               button2Text={"Add to kit"}
-					
+              loggedIn={this.state.loggedIn}
+
 					/> } />
 
-					<Route path="/myKit" render={() =>
+					<Route path="/my-kit" render={() =>
 						<ProductList
               products={this.state.currentUserKit}
               currentUserId={this.state.currentUserId}
               addToWishlist={this.addToWishlist}
               addToKit={this.addToKit}
-              button1Text={"Remove from kit"}
-              button2Text={"Add to wishlist"}
+              button2Text={"Remove from kit"}
+              button1Text={"Add to wishlist"}
+              loggedIn={this.state.loggedIn}
+              addToWishlist={this.addToWishlist}
+              addToKit={this.removeProduct}
 							
 						/>} />
 
@@ -286,8 +296,8 @@ getProducts(){
               currentUserId={this.state.currentUserId}
               addToWishlist={this.addToWishlist}
 							addToKit={this.addToKit}
-							button1Text={"Add to wishlist!!!"}
-              button2Text={"Add to kit?????"}
+							button1Text={"Add to wishlist"}
+              button2Text={"Add to kit"}
               loggedIn={this.state.loggedIn}
             />
           }/>

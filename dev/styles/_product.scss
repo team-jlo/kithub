@@ -4,7 +4,10 @@
 	min-width: 200px;
 	float: left;
 	border: 2px solid $light-blue;
-	box-shadow: 3px 3px 0px $light-blue
+	box-shadow: 3px 3px 0px $light-blue;
+	span{
+		display: block;
+	}
 }
 
 .product__name{

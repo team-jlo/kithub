@@ -8,7 +8,8 @@ header {
         color: $med-purple;
         font-size: 3em;
         font-weight: 400;
-        padding: 0 40px;
+        margin: 0;
+        padding: 0;
         text-transform: uppercase;
 
         span {
@@ -18,11 +19,13 @@ header {
 }
 
 nav{
+    padding-top: 20px;
 	ul{
 		float:right;
 
 	li{
-		padding: 5px;
+        padding: 5px;
+        font-size: 2rem;
 		float:left;
         a {
             color: $link-color;

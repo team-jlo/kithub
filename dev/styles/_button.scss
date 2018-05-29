@@ -19,6 +19,16 @@
         border: 1px solid $light-blue;
         color: $light-blue;
     }
+
+    &--reverse {
+        background-color: $med-purple;
+        color: white;
+
+        &:hover {
+            background-color: white;
+            color: $med-purple;
+        }
+    }
 }
 
 .link--button {

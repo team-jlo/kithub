@@ -5,7 +5,10 @@ const Home = (props) => {
     return (
 
 		<div className="home">
-				<p className="intro">Search for makeup products by type and category, and keep track of your favourites! Add products you own to your makeup Kit, and save coveted cosmetics to your Wishlist!</p>
+        <div className="intro">
+				<p>Search for makeup products by type and category, and keep track of your favourites!</p>
+                <p>Add products you own to your makeup Kit, and save coveted cosmetics to your Wishlist!</p>
+        </div>
 
 						
             <form action="" onSubmit={props.handleSubmit}>
@@ -29,7 +32,7 @@ const Home = (props) => {
                     </select>
                     : null}
 
-                <input  className="button" type="submit" value="Submit" />
+                <input  className="button button--reverse" type="submit" value="Submit" />
             </form> 
             
 		</div>

@@ -111,7 +111,9 @@ class App extends React.Component {
       else {
         this.setState({
           loggedIn: false,
-          currentUser: null
+          currentUser: null,
+          currentUserKit: [],
+          currentUserWishlist: []
         })
       } 
     })
@@ -130,6 +132,7 @@ class App extends React.Component {
     firebase.auth().signOut();
     this.dbRef.off('value');
   }
+  
   handleChange(e) {    
     this.setState({ 
       [e.target.name]: e.target.value,

@@ -19,8 +19,8 @@ const Header = (props) => {
 					</li>
 
 					<li><NavLink to="/">Home </NavLink> </li>
-					<li><NavLink to="/wishlist" >Wishlist</NavLink></li>
-					<li><NavLink to="myKit" >My Kit</NavLink></li>
+					<li><NavLink to="/my-wishlist" >Wishlist</NavLink></li>
+					<li><NavLink to="/my-kit">My Kit</NavLink></li>
 				</ul>
 			
         </nav>

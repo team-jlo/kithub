@@ -255,7 +255,7 @@ getProducts(){
               button2Text={"Add to kit"}
             /> 
           }/>
-					<Route path="/wishlist" render={() => 
+					<Route path="/my-wishlist" render={() => 
 					<ProductList
               products={this.state.currentUserWishlist}
               currentUserId={this.state.currentUserId}
@@ -266,7 +266,7 @@ getProducts(){
 					
 					/> } />
 
-					<Route path="/myKit" render={() =>
+					<Route path="/my-kit" render={() =>
 						<ProductList
               products={this.state.currentUserKit}
               currentUserId={this.state.currentUserId}
@@ -283,8 +283,8 @@ getProducts(){
               currentUserId={this.state.currentUserId}
               addToWishlist={this.addToWishlist}
 							addToKit={this.addToKit}
-							button1Text={"Add to wishlist!!!"}
-              button2Text={"Add to kit?????"}
+							button1Text={"Add to wishlist"}
+              button2Text={"Add to kit"}
               loggedIn={this.state.loggedIn}
             />
           }/>

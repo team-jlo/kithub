@@ -3,11 +3,18 @@ import Product from './Product';
 
 const ProductList = (props) => {
     return (
-        <ul className="product-list clearfix">
-            {props.products.map((product, i) => {
-                return (
-                <li className="product_li" key={product.id}>
-                <Product 
+
+        <div>
+            {props.loggedIn !== true ? 
+            <div>
+                <h3>Please log in to save products to your lists</h3>
+            </div>
+            : null} 
+            <ul className="product-list clearfix">
+                {props.products.map((product, i) => {
+                    return (
+                    <li className="product_li" key={product.id}>
+                    <Product 
                     brand={product.brand}
                     description={product.description}
                     id={product.id}
@@ -20,11 +27,13 @@ const ProductList = (props) => {
                     button2Text={props.button2Text}
                     loggedIn={props.loggedIn}
                     context={props.context}
-                />
-                </li>
-                )
-            })}
-        </ul>
+                    />
+                    </li>
+                    )
+                })}
+            </ul>
+        
+    </div>
     )
 }
 

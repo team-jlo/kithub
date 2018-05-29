@@ -256,6 +256,7 @@ getProducts(){
               addToKit={this.addToKit}
               button1Text={"Add to wishlist"}
               button2Text={"Add to kit"}
+              loggedIn={this.state.loggedIn}
             /> 
           }/>
 					<Route path="/wishlist" render={() => 

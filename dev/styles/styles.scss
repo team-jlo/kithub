@@ -14,8 +14,6 @@ Designed and built by Jackie Lealess, Orry Mevorach, and Laura-Louise Tobin
 @import 'button';
 
 
-
-
 /* =========================================
 MAIN STYLES
 ============================================ */
@@ -33,8 +31,23 @@ img{
 	border: 3px solid $dark-purple;
 	width: 85%;
 	margin: 75px auto;
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 ul{
 	list-style:none;
 }
+
+body{
+	background-image: url(../../assets/background-body.jpg);
+	background-attachment:fixed;
+	// background-position: center;
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+
+
+/* =========================================
+HOME
+============================================ */
+

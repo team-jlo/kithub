@@ -32,8 +32,7 @@ const Home = (props) => {
             
             }
             {/* The closing bracket above closes the ternary operator */}
-             
-
+								
 		</div>
     )
 }

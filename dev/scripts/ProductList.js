@@ -35,7 +35,7 @@ const ProductList = (props) => {
                             )
                         })}
                     </ul>
-                : <p className="products-no-results">No products to display</p>
+                : <p className="products-no-results">No products to display yet</p>
             }
 
                 

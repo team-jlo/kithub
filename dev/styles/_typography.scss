@@ -18,3 +18,34 @@ body {
     font-family: $body-font;
     font-size: 1.6rem;
 }
+
+p {
+    font-size: 1.8rem;
+    line-height: 1.8;
+}
+
+h3,
+p.products-no-results,
+.intro p,
+h2.page-heading {
+    text-align: center;
+}
+
+h2.page-heading {
+    color: $dark-purple;
+    font-size: 3rem;
+}
+
+.intro {
+        font-size: 2rem;
+        margin: 40px auto 0;
+        width: 70ch;
+
+        p {
+            margin-bottom: 0;
+        }
+}
+
+form h3 {
+    margin-top: 0;
+}

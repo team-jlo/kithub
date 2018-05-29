@@ -1,23 +1,19 @@
 import React from 'react';
 
 const ColorSet = (props) => {
-    const productColors = props.colorSet;
+    const productColors = props.product_colors;
 
     return (
         <ul className="color-set">
-            {productColors.map((productColor) => {
+            {productColors.map((productColor, i) => {
                 const styles = {
                     backgroundColor: productColor.hex_value
-                }
+								}
+								const title = productColor.colour_name
                 return (
-                    <li>
-                        <div styles={styles} className="color-set__item">
-                        {/*
-                            need to make this clickable
+                    <li key={i}>
+                        <div title={title} styles={styles} className="color-set__item">
 
-                            when the user selects this color, we save (only) this color variant to their wishlist/kit
-                            (does the user have to select a color variant? ie. can they save the product without the color variant?)
-                        */}
                         </div>
                     </li>
                 )

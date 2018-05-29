@@ -11,7 +11,7 @@ const Product = (props) => {
                     {props.brand}
                 </span>
                 <span className="product__name">
-                    {props.name}
+						<a href={props.product_link}>{props.name}</a>
                 </span>
             </h3>
 
@@ -20,10 +20,10 @@ const Product = (props) => {
 						</div>	
 
 
-						<Colorset />
+						<Colorset 
+							product_colors={props.product_colors}
+						/>
 
-
-						
             {props.loggedIn === true ? <button onClick={() => { props.button1Handler(props.id, props.context, props.name, props.brand, props.image_link, props.description) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
             {props.loggedIn === true ? <button onClick={() => { props.button2Handler(props.id, props.context, props.name, props.brand, props.image_link, props.description) }} className="button button__kit button__toggle">{props.button2Text}</button> : null}
 

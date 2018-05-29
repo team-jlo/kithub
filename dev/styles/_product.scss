@@ -1,22 +1,39 @@
+.product_li{
+	float: left;
+}
+
 .product {
 	width: calc(25% - 40px);
 	margin: 20px;
 	min-width: 200px;
-	float: left;
 	border: 2px solid $light-blue;
-	box-shadow: 3px 3px 0px $light-blue
+	box-shadow: 3px 3px 0px $light-blue;
+	padding: 10px;
+	span{
+		display: block;
+	}
+	a{
+		text-decoration: none;
+		color: $med-purple;
+	}
+	a:visited{
+		color: inherit;
+	}
 }
 
 .product__name{
 	color: inherit;
 }
 
-.product.brand{
+.product__brand{
 	text-transform: uppercase;
 }
 
 .product__image--container{
 	color: inherit;
+	img{
+		margin: 0 auto;
+	}
 }
 
 .color-set__item{

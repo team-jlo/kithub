@@ -31,16 +31,16 @@ class App extends React.Component {
     this.state = { 
       productTypes: [
         { name: "-- Select A Product --"},
-        { name: "Blush", value: 'blush', categories: ['All'] },
-        { name: "Bronzer", value: 'bronzer', categories: ['All'] },
-        { name: 'Eyebrow', value: 'eyebrow', categories: ['All'] },
-        { name: 'Eyeliner', value: 'eyeliner', categories: ['All','Liquid', 'Pencil', 'Gel', 'Cream'] },
-        { name: 'Eyeshadow', value: 'eyeshadow', categories: ['All','Palette', 'Pencil'] },
-        { name: 'Foundation', value: 'foundation', categories: ['All','Liquid', 'Contour', 'Bb cc', 'Concealer', 'Cream', 'Mineral', 'Powder', 'Highlighter'] },
-        { name: 'Lip Liner', value: 'lip_liner', categories: ['All'] },
-        { name: 'Lipstick', value: 'lipstick', categories: ['All','Lipstick', 'Lip Gloss', 'Liquid', 'Lip Stain'] },
-        { name: 'Mascara', value: 'mascara', categories: ['All'] },
-        { name: 'Nail Polish', value: 'nail_polish', categories: ['All'] }
+        { name: "Blush", value: 'blush', categories: ['-- Select Product Type --','All'] },
+        { name: "Bronzer", value: 'bronzer', categories: ['-- Select Product Type --','All'] },
+        { name: 'Eyebrow', value: 'eyebrow', categories: ['-- Select Product Type --','All'] },
+        { name: 'Eyeliner', value: 'eyeliner', categories: ['-- Select Product Type --','All','Liquid', 'Pencil', 'Gel', 'Cream'] },
+        { name: 'Eyeshadow', value: 'eyeshadow', categories: ['-- Select Product Type --','All','Palette', 'Pencil'] },
+        { name: 'Foundation', value: 'foundation', categories: ['-- Select Product Type --','All','Liquid', 'Contour', 'Bb cc', 'Concealer', 'Cream', 'Mineral', 'Powder', 'Highlighter'] },
+        { name: 'Lip Liner', value: 'lip_liner', categories: ['-- Select Product Type --','All'] },
+        { name: 'Lipstick', value: 'lipstick', categories: ['-- Select Product Type --','All','Lipstick', 'Lip Gloss', 'Liquid', 'Lip Stain'] },
+        { name: 'Mascara', value: 'mascara', categories: ['-- Select Product Type --','All'] },
+        { name: 'Nail Polish', value: 'nail_polish', categories: ['-- Select Product Type --','All'] }
       ],
       isProductTypeSelected: false,
       selectedProductType: '',

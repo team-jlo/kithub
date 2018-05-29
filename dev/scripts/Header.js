@@ -14,7 +14,7 @@ const Header = (props) => {
         <nav className="main-nav">
 				<ul>
 					<li className="login">
-						{props.loggedIn === false && <button onClick={props.loginWithGoogle}>Login with Google</button>}
+						{props.loggedIn === false && <button onClick={props.loginWithGoogle} className="button">Login with Google</button>}
 						{props.loggedIn === true ? <button onClick={props.logout}>Logout</button> : null}
 					</li>
 

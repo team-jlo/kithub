@@ -1,0 +1,20 @@
+.button {
+    // background-color: $light-blue;
+    background-color: white;
+    border: 1px solid $med-purple;
+    color: $med-purple;
+    font-size: 1.4rem;
+    font-weight: $bold;
+    padding: 10px 20px;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+        background-color: $med-purple;
+        color: white;
+    }
+
+    &--inactive {
+        border: 1px solid $light-blue;
+        color: $light-blue;
+    }
+}

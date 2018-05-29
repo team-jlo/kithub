@@ -13,16 +13,13 @@ const ProductList = (props) => {
                     id={product.id}
                     image_link={product.image_link}
                     name={product.name}
-                    // product_colors={product.product_colors}
-                    // product_link={product.product_link}
                     currentUserId={props.currentUserId}
-                    addToWishlist={props.addToWishlist}
-                    addToKit={props.addToKit}
                     button1Handler={props.button1Handler}
                     button2Handler={props.button2Handler}
                     button1Text={props.button1Text}
                     button2Text={props.button2Text}
                     loggedIn={props.loggedIn}
+                    context={props.context}
                 />
                 </li>
                 )

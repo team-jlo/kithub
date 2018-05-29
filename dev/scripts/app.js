@@ -207,7 +207,7 @@ getProducts(){
       image_link: productImage,
       description: productDescription,
       brand: productBrand,
-      inWishList: true    
+			product_colors: product_colors
     }
 
     dbRefWishList.set(newWishListItem);
@@ -222,8 +222,8 @@ getProducts(){
       name: productName,
       image_link: productImage,
       description: productDescription,
-      brand: productBrand,
-      inKit: true
+			brand: productBrand,
+			product_colors: product_colors
     }
     dbRefKit.set(newKitItem);
   }

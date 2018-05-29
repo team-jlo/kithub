@@ -78,8 +78,8 @@ class App extends React.Component {
         dbRefUser.on('value', (snapshot) => {
           if (snapshot.exists()) {
             let loggedInUser = snapshot.val();
-            let loggedInUserKit = loggedInUser.kit;
-            let loggedInUserWishlist = loggedInUser.wishList;
+            let loggedInUserKit = loggedInUser.kit || {};
+            let loggedInUserWishlist = loggedInUser.wishList || {};
             let loggedInUserWishlistArray = Object.values(loggedInUserWishlist);
             let loggedInUserKitArray = Object.values(loggedInUserKit);
 

@@ -9,7 +9,7 @@ const Header = (props) => {
 	return(
     <header>
         <h1>
-            <span>Kit</span>Hub
+			<img src="images/kithub-logo.svg" alt="Kithub" />
         </h1>
         <nav className="main-nav">
 				<ul>

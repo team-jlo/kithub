@@ -1,6 +1,6 @@
 import React from 'react';
 import Product from './Product';
-git 
+
 const ProductList = (props) => {
     return (
         <ul className="product-list clearfix">

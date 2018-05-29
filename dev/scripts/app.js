@@ -10,8 +10,7 @@ import ProductList from './ProductList';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
-import Kit from './Kit';
-import Wishlist from './Wishlist';
+
 
 const config = {
   apiKey: "AIzaSyCqf-B49wkmM2dxSkJoOR1uwF0lfypU-vw",

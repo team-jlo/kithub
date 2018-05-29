@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import Colorset from './ColorSet';
 
 
 const Product = (props) => {
@@ -10,19 +11,20 @@ const Product = (props) => {
                     {props.brand}
                 </span>
                 <span className="product__name">
-                    {props.name}
+						<a href={props.product_link}>{props.name}</a>
                 </span>
             </h3>
+
 						<div className="product__image--container">
-            <img src={props.image_link} alt={props.name} className="product__image" />
+            	<img src={props.image_link} alt={props.name} className="product__image" />
 						</div>	
+						<Colorset 
+							product_colors={props.product_colors}
+						/>
 						
-            {props.loggedIn === true ? 
-            <button onClick={() => { props.button1Handler(props.id, props.context, props.name, props.brand, props.image_link) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
-            {props.loggedIn === true ? 
-            <button onClick={() => { props.button2Handler(props.id, props.context, props.name, props.brand, props.image_link) }} className="button button__kit button__toggle">{props.button2Text}</button> : null}
-            
-            
+            {props.loggedIn === true ? <button onClick={() => { props.button1Handler(props.id, props.context, props.name, props.brand, props.image_link ) }} className="button button__wishlist button__toggle">{props.button1Text}</button> : null}
+            {props.loggedIn === true ? <button onClick={() => { props.button2Handler(props.id, props.context, props.name, props.brand, props.image_link) }} className="button button__kit button__toggle">{props.button2Text}</button> : null}
+                        
         </div>
 		);
 }

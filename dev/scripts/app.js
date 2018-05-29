@@ -10,8 +10,7 @@ import ProductList from './ProductList';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
-import Kit from './Kit';
-import Wishlist from './Wishlist';
+
 
 const config = {
   apiKey: "AIzaSyCqf-B49wkmM2dxSkJoOR1uwF0lfypU-vw",
@@ -112,7 +111,9 @@ class App extends React.Component {
       else {
         this.setState({
           loggedIn: false,
-          currentUser: null
+          currentUser: null,
+          currentUserKit: [],
+          currentUserWishlist: []
         })
       } 
     })
@@ -131,6 +132,7 @@ class App extends React.Component {
     firebase.auth().signOut();
     this.dbRef.off('value');
   }
+  
   handleChange(e) {    
     this.setState({ 
       [e.target.name]: e.target.value,
@@ -212,7 +214,8 @@ getProducts(){
       id: productId,
       name: productName,
       image_link: productImage,
-      brand: productBrand
+      brand: productBrand,
+			product_colors: product_colors
     }
 
     dbRefWishList.set(newWishListItem);
@@ -227,7 +230,8 @@ getProducts(){
       id: productId,
       name: productName,
       image_link: productImage,
-      brand: productBrand
+			brand: productBrand,
+			product_colors: product_colors
     }
     dbRefKit.set(newKitItem);
   }

@@ -29,40 +29,37 @@ img{
 }
 
 .wrapper{
-	border: 3px solid $dark-purple;
-	padding: 60px;
+	border: 10px solid $dark-purple;
+	padding: 60px 60px 30px;
 	width: 85%;
 	margin: 75px auto;
 	background-color: rgba(255, 255, 255, 0.9);
+		@media (max-width:500px){
+			padding:25px;
+			padding-bottom:15px;
+		}
 }
 
 ul{
 	list-style:none;
+	-webkit-padding-start: 0px;
+	-moz-padding-start: 0px;
 }
 
 body{
-	background-image: url(../../assets/background-body.jpg);
+	background-image: url(../../images/background-body.jpg);
 	background-attachment:fixed;
 	background-repeat: no-repeat;
 	background-size:cover;
 }
 
+.product-list{
 
-/* =========================================
-HOME
-============================================ */
+	display: inline-block;
+	li{
+		@media (max-width: 700px){
+			width: 100%;
+		}
+	}
 
-.intro{
-	// margin: 20px 50px;
 }
-
-/* ------------  FORM STYLING  ------------ */
-
-
-
-form{
-	padding: 20px;
-	margin: 20px auto;
-	width: 40%;
-}
-

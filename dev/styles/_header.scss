@@ -22,11 +22,19 @@ nav{
     padding-top: 20px;
 	ul{
 		float:right;
+		@media (max-width:480px){
+			float:none;
+			text-align: center;
+		}
 
 	li{
         padding: 5px;
         font-size: 2rem;
-		float:left;
+				float:left;
+					@media (max-width:480px){
+					float:none;
+					text-align: center;
+					}
         a {
             color: $link-color;
             font-weight: bold;

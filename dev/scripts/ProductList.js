@@ -24,12 +24,14 @@ const ProductList = (props) => {
 																				name={product.name}
 																				product_link={product.product_link}
                                         currentUserId={props.currentUserId}
-                                        button1Handler={props.button1Handler}
-                                        button2Handler={props.button2Handler}
                                         button1Text={props.button1Text}
+                                        button1Handler={props.button1Handler}
+                                        button1Context={props.button1Context}
+                                        button2Handler={props.button2Handler}
                                         button2Text={props.button2Text}
+                                        button2Context={props.button2Context}
                                         loggedIn={props.loggedIn}
-                                        context={props.context}
+                                        // context={props.context}
                                     />
                                 </li>
                             )

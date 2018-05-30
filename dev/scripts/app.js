@@ -63,9 +63,10 @@ class App extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
     this.setCategory = this.setCategory.bind(this);
 		this.loginWithGoogle = this.loginWithGoogle.bind(this);
-    this.addToWishlist = this.addToWishlist.bind(this);	
-    this.addToKit = this.addToKit.bind(this);
+    // this.addToWishlist = this.addToWishlist.bind(this);	
+    // this.addToKit = this.addToKit.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
+    this.addToList = this.addToList.bind(this);
   }
 
   componentDidMount() {
@@ -90,11 +91,10 @@ class App extends React.Component {
               currentUserId: loggedInUser.userId,
               currentUserWishlist: loggedInUserWishlistArray,
               currentUserKit: loggedInUserKitArray
-            }, () => { console.log(this.state.currentUserWishlist, this.state.currentUserKit)});
+            });
             this.dbRefUser = dbRefUser;
           }
           else {
-            console.log('new user created');
             let loggedInUser = {
               userId: user.uid,
               userName: user.displayName,
@@ -105,7 +105,6 @@ class App extends React.Component {
             currentUserId: loggedInUser.userId
           })
           dbRefUser.set(loggedInUser);
-          console.log(loggedInUser)
           }
         })
       }
@@ -143,9 +142,7 @@ class App extends React.Component {
     }); 
   }
 
-  removeProduct(productId, productList, productName, productBrand, productImage) {
-    console.log(`removing ${productId}`);
-    console.log(`${this.state.currentUserId}/${productList}/${productId}`);
+  removeProduct(productId, productList, ...Args) {
     firebase.database().ref(`users/${this.state.currentUserId}/${productList}/${productId}`).remove();
   }
 
@@ -207,37 +204,51 @@ getProducts(){
     e.preventDefault();
     this.getProducts()
   }
-  
-  addToWishlist(productId, productList, productName, productBrand, productImage, productLink) {
-    console.log("adding to wishlist");
-    let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
-    let dbRefWishList = firebase.database().ref(`users/${this.state.currentUserId}/wishList/${productId}`);
 
-    const newWishListItem = {
+  addToList(productId, productList, productName, productBrand, productImage, productLink) {
+    let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
+    let dbRefList = firebase.database().ref(`users/${this.state.currentUserId}/${productList}/${productId}`);
+    
+
+    const newListItem = {
       id: productId,
       name: productName,
       image_link: productImage,
-			brand: productBrand,
-			product_link: productLink
-		}
-    dbRefWishList.set(newWishListItem);
-  }
-  
-  addToKit(productId, productList, productName, productBrand, productImage, productLink) {
-    console.log("adding to kit");
-    let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
-    let dbRefKit = firebase.database().ref(`users/${this.state.currentUserId}/kit/${productId}`);
-
-    const newKitItem = {
-      id: productId,
-      name: productName,
-      image_link: productImage,
-			brand: productBrand,
-			product_link: productLink
-
+      brand: productBrand,
+      product_link: productLink
     }
-    dbRefKit.set(newKitItem);
+    dbRefList.set(newListItem);
   }
+  
+  // addToWishlist(productId, productList, productName, productBrand, productImage, productLink) {
+  //   let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
+  //   let dbRefWishList = firebase.database().ref(`users/${this.state.currentUserId}/wishList/${productId}`);
+
+  //   const newWishListItem = {
+  //     id: productId,
+  //     name: productName,
+  //     image_link: productImage,
+	// 		brand: productBrand,
+	// 		product_link: productLink
+	// 	}
+  //   dbRefWishList.set(newWishListItem);
+  // }
+  
+  // addToKit(productId, productList, productName, productBrand, productImage, productLink) {
+  //   console.log("adding to kit");
+  //   let dbRefUser = firebase.database().ref(`users/${this.state.currentUserId}`);
+  //   let dbRefKit = firebase.database().ref(`users/${this.state.currentUserId}/kit/${productId}`);
+
+  //   const newKitItem = {
+  //     id: productId,
+  //     name: productName,
+  //     image_link: productImage,
+	// 		brand: productBrand,
+	// 		product_link: productLink
+
+  //   }
+  //   dbRefKit.set(newKitItem);
+  // }
 
   render() {
     return (
@@ -261,11 +272,10 @@ getProducts(){
 							products={this.state.productsToDisplay}
 							currentUserId={this.state.currentUserId}
               button1Text={"Add to wishlist"}
-							button1Handler={this.addToWishlist}
+							button1Handler={this.addToList}
               button2Text={"Add to kit"}
-              button2Handler={this.addToKit}
+              button2Handler={this.addToList}
               loggedIn={this.state.loggedIn}
-              context={"products"}
             /> 
           }/>
           <Route path="/my-wishlist"  render={() => 
@@ -278,10 +288,11 @@ getProducts(){
               currentUserId={this.state.currentUserId}
               button1Text={"Remove from wishlist"}
               button1Handler={this.removeProduct}
+              button1Context={"wishList"}
               button2Text={"Add to kit"}
-              button2Handler={this.addToKit}
+              button2Handler={this.addToList}
+              button2Context={"kit"}
               loggedIn={this.state.loggedIn}
-              context={"wishList"}
 					/> } />
           <Route path="/my-kit" render={() =>
             <PageHeading text={"My Kit"} />
@@ -293,11 +304,12 @@ getProducts(){
               products={this.state.currentUserKit}
               currentUserId={this.state.currentUserId}
               button1Text={"Add to wishlist"}
-              button1Handler={this.addToWishlist}
+              button1Handler={this.addToList}
+              button1Context={"wishList"}
               button2Text={"Remove from kit"}
               button2Handler={this.removeProduct}
+              button2Context={"kit"}
               loggedIn={this.state.loggedIn}
-              context={"kit"}
 						/>} />
 
           <Route path="/" exact render={() =>
@@ -305,11 +317,12 @@ getProducts(){
               products={this.state.productsToDisplay}
               currentUserId={this.state.currentUserId}
 							button1Text={"Add to wishlist"}
-              button1Handler={this.addToWishlist}
+              button1Handler={this.addToList}
+              button1Context={"wishList"}
               button2Text={"Add to kit"}
-							button2Handler={this.addToKit}
+              button2Handler={this.addToList}
+              button2Context={"kit"}
               loggedIn={this.state.loggedIn}
-              context={"products"}
             />
           }/>
 					

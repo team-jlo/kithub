@@ -1,6 +1,8 @@
 import React from 'react';
 import ProductList from './ProductList';
 
+const test = "Creating a pull request to test Github API. DO NOT MERGE THIS CODE"
+
 const Home = (props) => {
     return (
 
